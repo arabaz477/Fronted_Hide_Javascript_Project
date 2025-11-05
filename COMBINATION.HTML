@@ -1,0 +1,67 @@
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Buttons</title>
+    <style>
+        body {
+            background-color: rgb(61, 235, 46);
+            padding: 20px;
+            font-family: Arial;
+        }
+        .nav_bar button {
+            padding: 10px;
+            margin: 5px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function clickbutton(action) {
+            const output = document.getElementById("output");
+
+            if (action === 'submit') {
+                output.innerText = "You clicked Submit!";
+                document.body.style.backgroundColor = "#ffcc00";
+            } else if (action === 'add') {
+                output.innerText = "Adding numbers...";
+                document.body.style.backgroundColor = "#00ccff";
+            } else if (action === 'subtract') {
+                output.innerText = "Subtracting numbers...";
+                document.body.style.backgroundColor = "#ff6666";
+            } else if (action === 'superadd') {
+                output.innerText = "Super addition activated!";
+                document.body.style.backgroundColor = "#cc33ff";
+            } else if (action === 'remove') {
+                output.innerText = "Removing something...";
+                document.body.style.backgroundColor = "#009933";
+            } else if (action === 'append') {
+                output.innerText = "Appending new data!";
+                document.body.style.backgroundColor = "#9933ff";
+            } else if (action === 'clear') {
+                output.innerText = "";
+                document.body.style.backgroundColor = "rgb(61, 235, 46)";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="nav_bar">
+        <button onclick="clickbutton('submit')">Submit</button>
+        <button onclick="clickbutton('add')">Addition</button>
+        <button onclick="clickbutton('subtract')">Subtraction</button>
+        <button onclick="clickbutton('superadd')">Super Addition</button>
+        <button onclick="clickbutton('remove')">Removing</button>
+        <button onclick="clickbutton('append')">Appending</button>
+        <button onclick="clickbutton('clear')">Clearing</button>
+    </div>
+    <div id="output"></div>
+
+</body>
+</html>

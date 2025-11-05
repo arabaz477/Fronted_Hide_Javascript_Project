@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Elements Playground</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background-color: #e1f5e8;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .todo-item {
+            margin: 5px 0;
+            padding: 5px;
+            background: #f3f3f3;
+            border-radius: 5px;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-top: 10px;
+            transition: transform 1s;
+        }
+
+        .move {
+            transform: translateX(200px);
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="section">
+        <h3>1. Show Input Text</h3>
+        <input type="text" id="username" placeholder="Enter your name" />
+        <button class="btn" onclick="showName()">Show</button>
+        <p id="greeting"></p>
+    </div>
+
+
+    <div class="section">
+        <h3>2. Show/Hide Image</h3>
+        <button class="btn" onclick="toggleImage()">Toggle Image</button>
+        <br>
+        <img id="toggleImg" src="https://via.placeholder.com/150" style="display:none; margin-top:10px;" />
+    </div>
+
+    
+    <div class="section">
+        <h3>3. Theme Toggle</h3>
+        <button class="btn" onclick="toggleTheme()">Toggle Light/Dark</button>
+    </div>
+
+    <div class="section">
+        <h3>4. Add/Remove Boxes</h3>
+        <button class="btn" onclick="addBox()">Add Box</button>
+        <button class="btn" onclick="removeBox()">Remove Box</button>
+        <div id="boxContainer" style="display:flex; flex-wrap:wrap;"></div>
+    </div>
+
+    
+    <div class="section">
+        <h3>5. Counter</h3>
+        <button class="btn" onclick="changeCount(-1)">-</button>
+        <span id="counter">0</span>
+        <button class="btn" onclick="changeCount(1)">+</button>
+    </div>
+
+    
+    <div class="section">
+        <h3>6. Todo List</h3>
+        <input type="text" id="todoInput" placeholder="Enter todo" />
+        <button class="btn" onclick="addTodo()">Add</button>
+        <div id="todoList"></div>
+    </div>
+
+    
+    <div class="section">
+        <h3>7. Animate Box</h3>
+        <button class="btn" onclick="animateBox()">Animate</button>
+        <div id="box"></div>
+    </div>
+
+    <script>
+    
+        function showName() {
+            let name = document.getElementById("username").value;
+            document.getElementById("greeting").innerText = "Hello, " + name + "!";
+        }
+
+        
+        function toggleImage() {
+            let img = document.getElementById("toggleImg");
+            img.style.display = img.style.display === "none" ? "block" : "none";
+        }
+
+        
+        let isDark = false;
+        function toggleTheme() {
+            document.body.style.backgroundColor = isDark ? "yellow" : "green";
+            document.body.style.color = isDark ? "blue" : "red";
+            isDark = !isDark;
+        }
+
+    
+        function addBox() {
+            let box = document.createElement("div");
+            box.style.width = "60px";
+            box.style.height = "60px";
+            box.style.background = "#33c";
+            box.style.margin = "5px";
+            box.style.borderRadius = "8px";
+            document.getElementById("boxContainer").appendChild(box);
+        }
+
+        function removeBox() {
+            let container = document.getElementById("boxContainer");
+            if (container.lastChild) {
+                container.removeChild(container.lastChild);
+            }
+        }
+
+     
+        let count = 0;
+        function changeCount(val) {
+            count += val;
+            document.getElementById("counter").innerText = count;
+        }
+
+
+        function addTodo() {
+            let todo = document.getElementById("todoInput").value;
+            if (todo.trim() === "") return;
+
+            let item = document.createElement("div");
+            item.className = "todo-item";
+            item.innerText = todo;
+
+            item.onclick = function () {
+                this.remove();
+            };
+
+            document.getElementById("todoList").appendChild(item);
+            document.getElementById("todoInput").value = "";
+        }
+
+        function animateBox() {
+            let box = document.getElementById("box");
+            box.classList.toggle("move");
+        }
+    </script>
+
+</body>
+</html>
